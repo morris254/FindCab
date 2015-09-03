@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/layout_padding"
+    android:background="#473939">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/mobile_no"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/text_size"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/login_margin_top" />
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mobile_no"
+        android:inputType="phone"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/text_size"
+        android:maxLength="10"
+        android:layout_marginTop="@dimen/login_margin_top"
+        />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/password"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/text_size"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/login_margin_top" />
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/password"
+        android:textColor="#FFFFFF"
+        android:inputType="textPassword"
+        android:layout_marginTop="@dimen/login_margin_top" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/confirm_password"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/text_size"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/login_margin_top" />
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/password"
+        android:textColor="#FFFFFF"
+        android:inputType="textPassword"
+        android:layout_marginTop="@dimen/login_margin_top" />
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/login"
+        android:textSize="@dimen/text_size"
+        android:text="@string/login"
+        android:background="#FF9900"
+        android:layout_marginTop="@dimen/login_margin_top"/>
+
+</LinearLayout>
