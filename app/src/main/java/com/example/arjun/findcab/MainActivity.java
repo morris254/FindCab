@@ -19,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Click
     void btnSignUp(){
-
+        Intent intent = SignupActivity_.intent(getApplicationContext()).get();
+        startActivity(intent);
     }
 
 }
