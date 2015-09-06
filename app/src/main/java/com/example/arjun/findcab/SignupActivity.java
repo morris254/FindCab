@@ -1,11 +1,11 @@
 package com.example.arjun.findcab;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.arjun.webservice.Wines;
 import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -16,12 +16,8 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.Reader;
-import java.lang.reflect.Array;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -57,7 +53,7 @@ public class SignupActivity extends AppCompatActivity {
 
         client.setConnectTimeout(60000, TimeUnit.MILLISECONDS);
         client.setReadTimeout(60000, TimeUnit.MILLISECONDS);
-        GetRequest("http://192.168.0.8:3000/wines/55ea75e2ed43ae5e6975f58c");
+        GetRequest("http://192.168.0.8:3000/wines");
 
 
 
@@ -71,10 +67,6 @@ public class SignupActivity extends AppCompatActivity {
         Response response = null;
         try {
             response = client.newCall(request).execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
             someuiStuff(response.body().string());
         } catch (IOException e) {
             e.printStackTrace();
@@ -83,33 +75,12 @@ public class SignupActivity extends AppCompatActivity {
 
     @UiThread
     void someuiStuff(String getResponse) {
-
-        try {
-            JSONObject jsonObject = new JSONObject(getResponse.toString());
-            String id = jsonObject.getString("_id");
-            String name = jsonObject.getString("name");
-            String year = jsonObject.getString("year");
-            String grapes = jsonObject.getString("grapes");
-            String country = jsonObject.getString("country");
-            String region = jsonObject.getString("region");
-            String description = jsonObject.getString("description");
-            String picture = jsonObject.getString("picture");
-
-            Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
-            Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
-            Toast.makeText(getApplicationContext(), year, Toast.LENGTH_SHORT).show();
-            Toast.makeText(getApplicationContext(), grapes, Toast.LENGTH_SHORT).show();
-            Toast.makeText(getApplicationContext(), country, Toast.LENGTH_SHORT).show();
-            Toast.makeText(getApplicationContext(), region, Toast.LENGTH_SHORT).show();
-            Toast.makeText(getApplicationContext(), description, Toast.LENGTH_SHORT).show();
-            Toast.makeText(getApplicationContext(), picture, Toast.LENGTH_SHORT).show();
-           
-            
-        }catch(JSONException e){
-            e.printStackTrace();
-        }
-
-        //String data = gson.fromJson(getResponse.toString(), String.class);
+            Gson gson = new Gson();
+            Wines[] wines = gson.fromJson(getResponse.toString(), Wines[].class);
+            for(int i =0;i<wines.length;i++){
+                Toast.makeText(getApplicationContext(), wines[i].get_id(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), wines[i].getName(), Toast.LENGTH_SHORT).show();
+            }
         Log.d("Webservice", getResponse.toString() + "");
        Toast.makeText(getApplicationContext(), getResponse.toString()+"", Toast.LENGTH_SHORT).show();
     }
