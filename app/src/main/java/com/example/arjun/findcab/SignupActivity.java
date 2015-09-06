@@ -7,8 +7,10 @@ import android.widget.Toast;
 
 import com.example.arjun.webservice.Wines;
 import com.google.gson.Gson;
+import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import org.androidannotations.annotations.Background;
@@ -68,6 +70,17 @@ public class SignupActivity extends AppCompatActivity {
         try {
             response = client.newCall(request).execute();
             someuiStuff(response.body().string());
+
+            /*Wines wine = new Wines();
+            wine.setName("Arjun");
+            wine.setCountry("India");
+            wine.setDescription("Associate Consultant");
+            String toSend = gson.toJson(wine);
+
+            RequestBody body = RequestBody.create(MediaType.parse("application/json"), toSend);
+            Request request1 = new Request.Builder().url("http://192.168.0.8:3000/wines").post(body).build();
+
+                Response responsehttp = client.newCall(request1).execute();*/
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -75,13 +88,16 @@ public class SignupActivity extends AppCompatActivity {
 
     @UiThread
     void someuiStuff(String getResponse) {
-            Gson gson = new Gson();
-            Wines[] wines = gson.fromJson(getResponse.toString(), Wines[].class);
-            for(int i =0;i<wines.length;i++){
-                Toast.makeText(getApplicationContext(), wines[i].get_id(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(), wines[i].getName(), Toast.LENGTH_SHORT).show();
-            }
-        Log.d("Webservice", getResponse.toString() + "");
-       Toast.makeText(getApplicationContext(), getResponse.toString()+"", Toast.LENGTH_SHORT).show();
+        Gson gson = new Gson();
+        Wines[] wines = gson.fromJson(getResponse.toString(), Wines[].class);
+
+        for(int i =0;i<wines.length;i++){
+            Toast.makeText(getApplicationContext(), wines[i].get_id(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), wines[i].getName(), Toast.LENGTH_SHORT).show();
+        }
+        /*serverResponseStatus = responsehttp.code();
+        System.out.println("Response status is " + serverResponseStatus);*/
+                Log.d("Webservice", getResponse.toString() + "");
+        Toast.makeText(getApplicationContext(), getResponse.toString()+"", Toast.LENGTH_SHORT).show();
     }
 }

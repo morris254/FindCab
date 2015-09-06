@@ -14,6 +14,10 @@ public class Wines {
     private String description;
     private String picture;
 
+    public Wines(){
+
+    }
+
     public Wines(String _id, String name, String year, String grapes, String country, String region, String description, String picture) {
         this._id = _id;
         this.name = name;
