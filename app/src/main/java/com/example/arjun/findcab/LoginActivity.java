@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
 
             String pwd = password.getText().toString().replace(" ", "");
 
-            if(mobileno.equals("7506977761") && pwd.equals("Arjun143*") ){
+            if(mobileno.equals("9999999999") && pwd.equals("findCab@123") ){
                 Toast.makeText(getApplicationContext(), "Logged in",Toast.LENGTH_SHORT).show();
             }else {
 
